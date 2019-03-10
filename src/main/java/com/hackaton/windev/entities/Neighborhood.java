@@ -2,6 +2,7 @@ package com.hackaton.windev.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Neighborhood implements Serializable {
@@ -15,6 +16,9 @@ public class Neighborhood implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "city_id")
 	private City city;
+
+	@OneToMany(mappedBy = "neighborhood")
+	private Set<NeighborhoodsSpecifications> neighborhoodsSpecifications;
 
 	public Neighborhood() {
 	}
@@ -48,12 +52,21 @@ public class Neighborhood implements Serializable {
 		this.city = city;
 	}
 
+	public Set<NeighborhoodsSpecifications> getNeighborhoodsSpecifications() {
+		return neighborhoodsSpecifications;
+	}
+
+	public void setNeighborhoodsSpecifications(Set<NeighborhoodsSpecifications> neighborhoodsSpecifications) {
+		this.neighborhoodsSpecifications = neighborhoodsSpecifications;
+	}
+
 	@Override
 	public String toString() {
 		return "Neighborhood{" +
 				"id=" + id +
 				", name='" + name + '\'' +
 				", city=" + city +
+				", neighborhoodsSpecifications=" + neighborhoodsSpecifications +
 				'}';
 	}
 }

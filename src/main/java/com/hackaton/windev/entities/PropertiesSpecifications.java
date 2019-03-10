@@ -1,20 +1,19 @@
 package com.hackaton.windev.entities;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class PropertiesSpecifications implements Serializable {
 
-	@EmbeddedId
+	@Id
+	@GeneratedValue
+	private Long id;
+
 	@ManyToOne
 	@JoinColumn(name = "property_id")
 	private Property property;
 
-	@EmbeddedId
 	@ManyToOne
 	@JoinColumn(name = "specification_id")
 	private Specification specification;
@@ -25,6 +24,14 @@ public class PropertiesSpecifications implements Serializable {
 	public PropertiesSpecifications(Property property, Specification specification) {
 		this.property = property;
 		this.specification = specification;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Property getProperty() {
@@ -46,7 +53,8 @@ public class PropertiesSpecifications implements Serializable {
 	@Override
 	public String toString() {
 		return "PropertiesSpecifications{" +
-				"property=" + property +
+				"id=" + id +
+				", property=" + property +
 				", specification=" + specification +
 				'}';
 	}

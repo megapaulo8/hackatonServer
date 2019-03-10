@@ -2,6 +2,7 @@ package com.hackaton.windev.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Person implements Serializable {
@@ -21,6 +22,9 @@ public class Person implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+
+	@OneToMany(mappedBy = "person")
+	private Set<BankAccount> bankAccounts;
 
 	public Person() {
 	}

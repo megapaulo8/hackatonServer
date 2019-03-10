@@ -19,6 +19,7 @@ public class RoomsItems implements Serializable {
 	private String name;
 	private String color;
 	private Integer quantity;
+	private String photoPath;
 
 	@Enumerated(EnumType.STRING)
 	private RoomsItemsGrade roomsItemsGrade;
@@ -26,11 +27,12 @@ public class RoomsItems implements Serializable {
 	public RoomsItems() {
 	}
 
-	public RoomsItems(PropertiesRooms propertiesRooms, String name, String color, Integer quantity, RoomsItemsGrade roomsItemsGrade) {
+	public RoomsItems(PropertiesRooms propertiesRooms, String name, String color, Integer quantity, String photoPath, RoomsItemsGrade roomsItemsGrade) {
 		this.propertiesRooms = propertiesRooms;
 		this.name = name;
 		this.color = color;
 		this.quantity = quantity;
+		this.photoPath = photoPath;
 		this.roomsItemsGrade = roomsItemsGrade;
 	}
 
@@ -82,6 +84,14 @@ public class RoomsItems implements Serializable {
 		this.roomsItemsGrade = roomsItemsGrade;
 	}
 
+	public String getPhotoPath() {
+		return photoPath;
+	}
+
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomsItems{" +
@@ -90,6 +100,7 @@ public class RoomsItems implements Serializable {
 				", name='" + name + '\'' +
 				", color='" + color + '\'' +
 				", quantity=" + quantity +
+				", photoPath='" + photoPath + '\'' +
 				", roomsItemsGrade=" + roomsItemsGrade +
 				'}';
 	}

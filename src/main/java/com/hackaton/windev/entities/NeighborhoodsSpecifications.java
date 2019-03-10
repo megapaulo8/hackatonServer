@@ -1,30 +1,37 @@
 package com.hackaton.windev.entities;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class NeighborhoodSpecifications implements Serializable {
+public class NeighborhoodsSpecifications implements Serializable {
 
-	@EmbeddedId
+	@Id
+	@GeneratedValue
+	private Long id;
+
 	@ManyToOne
 	@JoinColumn(name = "neighborhood_id")
 	private Neighborhood neighborhood;
 
-	@EmbeddedId
 	@ManyToOne
 	@JoinColumn(name = "specification_id")
 	private Specification specification;
 
-	public NeighborhoodSpecifications() {
+	public NeighborhoodsSpecifications() {
 	}
 
-	public NeighborhoodSpecifications(Neighborhood neighborhood, Specification specification) {
+	public NeighborhoodsSpecifications(Neighborhood neighborhood, Specification specification) {
 		this.neighborhood = neighborhood;
 		this.specification = specification;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Neighborhood getNeighborhood() {
@@ -45,8 +52,9 @@ public class NeighborhoodSpecifications implements Serializable {
 
 	@Override
 	public String toString() {
-		return "NeighborhoodSpecifications{" +
-				"neighborhood=" + neighborhood +
+		return "NeighborhoodsSpecifications{" +
+				"id=" + id +
+				", neighborhood=" + neighborhood +
 				", specification=" + specification +
 				'}';
 	}

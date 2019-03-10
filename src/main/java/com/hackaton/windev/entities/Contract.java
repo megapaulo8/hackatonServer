@@ -1,18 +1,18 @@
 package com.hackaton.windev.entities;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 public class Contract implements Serializable {
 
-	@EmbeddedId
+	@Id
+	@GeneratedValue
+	private Long id;
+
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private Person person;
 
-	@EmbeddedId
 	@OneToOne
 	@JoinColumn(name = "property_id")
 	private Property property;
@@ -26,6 +26,14 @@ public class Contract implements Serializable {
 		this.person = person;
 		this.property = property;
 		this.contractCode = contractCode;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Person getPerson() {
@@ -55,7 +63,8 @@ public class Contract implements Serializable {
 	@Override
 	public String toString() {
 		return "Contract{" +
-				"person=" + person +
+				"id=" + id +
+				", person=" + person +
 				", property=" + property +
 				", contractCode='" + contractCode + '\'' +
 				'}';

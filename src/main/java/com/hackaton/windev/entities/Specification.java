@@ -4,6 +4,7 @@ import com.hackaton.windev.enums.SpecificationType;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Specification implements Serializable {
@@ -12,6 +13,9 @@ public class Specification implements Serializable {
 	@GeneratedValue
 	private Long id;
 	private String name;
+
+	@OneToMany(mappedBy = "specification")
+	private Set<NeighborhoodsSpecifications> neighborhoodsSpecifications;
 
 	@Enumerated(EnumType.STRING)
 	private SpecificationType type;
@@ -48,11 +52,20 @@ public class Specification implements Serializable {
 		this.type = type;
 	}
 
+	public Set<NeighborhoodsSpecifications> getNeighborhoodsSpecifications() {
+		return neighborhoodsSpecifications;
+	}
+
+	public void setNeighborhoodsSpecifications(Set<NeighborhoodsSpecifications> neighborhoodsSpecifications) {
+		this.neighborhoodsSpecifications = neighborhoodsSpecifications;
+	}
+
 	@Override
 	public String toString() {
 		return "Specification{" +
 				"id=" + id +
 				", name='" + name + '\'' +
+				", neighborhoodsSpecifications=" + neighborhoodsSpecifications +
 				", type=" + type +
 				'}';
 	}
