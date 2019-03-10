@@ -6,8 +6,6 @@ create table person_role
 	name varchar(255) not null
 );
 
-alter table person_role owner to postgres;
-
 create unique index user_role_id_uindex
 	on person_role (id);
 
@@ -20,8 +18,6 @@ create table city
 	state_abbreviation varchar(2) not null
 );
 
-alter table city owner to postgres;
-
 create table neighborhood
 (
 	id serial not null
@@ -33,8 +29,6 @@ create table neighborhood
 			references city
 			on delete cascade
 );
-
-alter table neighborhood owner to postgres;
 
 create table address
 (
@@ -50,8 +44,6 @@ create table address
 			references neighborhood
 			on delete cascade
 );
-
-alter table address owner to postgres;
 
 create table person
 (
@@ -71,8 +63,6 @@ create table person
 			references address
 );
 
-alter table person owner to postgres;
-
 create unique index user_id_uindex
 	on person (id);
 
@@ -87,8 +77,6 @@ create table people_roles
 			references person_role
 			on delete cascade
 );
-
-alter table people_roles owner to postgres;
 
 create unique index address_id_uindex
 	on address (id);
@@ -106,8 +94,6 @@ create table property_category
 			primary key,
 	name varchar(255)
 );
-
-alter table property_category owner to postgres;
 
 create unique index property_category_id_uindex
 	on property_category (id);
@@ -134,8 +120,6 @@ create table property
 	code varchar(255)
 );
 
-alter table property owner to postgres;
-
 create unique index property_id_uindex
 	on property (id);
 
@@ -153,8 +137,6 @@ create table contract
 		constraint contract_pk
 			primary key
 );
-
-alter table contract owner to postgres;
 
 create unique index contract_contract_code_uindex
 	on contract (contract_code);
@@ -177,8 +159,6 @@ create table report
 	date timestamp not null
 );
 
-alter table report owner to postgres;
-
 create unique index report_id_uindex
 	on report (id);
 
@@ -190,8 +170,6 @@ create table specification
 	name varchar(255) not null,
 	type varchar(255) not null
 );
-
-alter table specification owner to postgres;
 
 create unique index specification_id_uindex
 	on specification (id);
@@ -209,8 +187,6 @@ create table properties_specifications
 			primary key
 );
 
-alter table properties_specifications owner to postgres;
-
 create unique index properties_specifications_id_uindex
 	on properties_specifications (id);
 
@@ -227,8 +203,6 @@ create table neighborhoods_specifications
 			primary key
 );
 
-alter table neighborhoods_specifications owner to postgres;
-
 create unique index neighborhoods_specifications_id_uindex
 	on neighborhoods_specifications (id);
 
@@ -239,8 +213,6 @@ create table room_type
 			primary key,
 	name varchar(255) not null
 );
-
-alter table room_type owner to postgres;
 
 create unique index room_type_id_uindex
 	on room_type (id);
@@ -260,8 +232,6 @@ create table properties_rooms
 	photo_path varchar(255) not null
 );
 
-alter table properties_rooms owner to postgres;
-
 create unique index properties_rooms_id_uindex
 	on properties_rooms (id);
 
@@ -279,8 +249,6 @@ create table rooms_items
 	grade integer not null
 );
 
-alter table rooms_items owner to postgres;
-
 create unique index rooms_items_id_uindex
 	on rooms_items (id);
 
@@ -296,8 +264,6 @@ create table credit_cards
 		constraint credit_cards_person_id_fk
 			references person
 );
-
-alter table credit_cards owner to postgres;
 
 create unique index credit_cards_id_uindex
 	on credit_cards (id);
@@ -316,8 +282,6 @@ create table bank_account
 			references person
 );
 
-alter table bank_account owner to postgres;
-
 create unique index bank_account_id_uindex
 	on bank_account (id);
 
@@ -332,8 +296,6 @@ create table payment
 	amount double precision not null,
 	status varchar(255) not null
 );
-
-alter table payment owner to postgres;
 
 create unique index payment_id_uindex
 	on payment (id);
@@ -355,8 +317,6 @@ create table visit
 	payment_method varchar(255),
 	change double precision
 );
-
-alter table visit owner to postgres;
 
 create unique index visit_id_uindex
 	on visit (id);
