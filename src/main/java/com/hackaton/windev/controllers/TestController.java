@@ -40,4 +40,16 @@ public class TestController {
 
 		return test.getFullName();
 	}
+
+
+	@PostMapping("/save/person")
+	public @ResponseBody
+	String savePerson(@RequestBody Person person) {
+		try {
+			this.repository.save(person);
+		} catch (Exception exception) {
+			return exception.getMessage();
+		}
+		return "success";
+	}
 }

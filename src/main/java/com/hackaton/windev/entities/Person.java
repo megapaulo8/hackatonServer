@@ -2,13 +2,14 @@ package com.hackaton.windev.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
 public class Person implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String fullName;
 	private String email;
@@ -16,15 +17,14 @@ public class Person implements Serializable {
 	private String cpf;
 	private String picturePath;
 	private String password;
-	private String registerDate;
-	private String isActive;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date registerDate;
+	private boolean isActive;
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-
-	@OneToMany(mappedBy = "person")
-	private Set<BankAccount> bankAccounts;
 
 	public Person() {
 	}
@@ -92,19 +92,19 @@ public class Person implements Serializable {
 		this.password = password;
 	}
 
-	public String getRegisterDate() {
+	public Date getRegisterDate() {
 		return registerDate;
 	}
 
-	public void setRegisterDate(String registerDate) {
+	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
 	}
 
-	public String getIsActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(String isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 
